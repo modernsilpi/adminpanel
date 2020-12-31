@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>dslr dashboard</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+<title>dslr dashboard</title>
+<meta charset="UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+.table {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 1000px;
+    margin: 20px;
+    /* border-collapse: collapse; */
+}
+
+td {
+    /* border:  1px solid black; */
+    margin: 3px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  
+  width: 60px;
+  height: 34px;
+}
+
+.table-switch {
+    width: 40px;
+    height: 25px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.table-slider:before {
+  height: 23px;
+  width: 23px;
+  left: 1px;
+  bottom: 1px;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+input:checked + .table-slider:before {
+    -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.table-slider.round {
+    border-radius: 25px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* pop up */
+
+.hover_bkgr_fricc{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:left;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+.hover_bkgr_fricc .helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.hover_bkgr_fricc > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: 600px;
+    overflow: auto;
+    max-width: 750px;
+    min-height: 400px;
+    vertical-align: middle;
+    width: 60%;
+    left: 10%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px;
+}
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: fixed;
+    top: 0px;
+    right: 5px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+.trigger_popup_fricc {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+</style>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-left loginbtn">login</span>
+  <span class="w3-bar-item w3-left logoutbtn">logout</span>
+  <span class="w3-bar-item w3-right">My Dashboard</span>
+</div>
+
+<!-- login form details -->
+<div class="back-layer2">
+  <div class="close">
+    <span class="close-btn">X</span>
+  </div>
+  <section class="login-form">
+    <form>
+      
+      <div class="form-group">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Phone number</label>
+          <input type="text" class="form-control lphonenumber " id="exampleInputPassword2" placeholder="Your phone number" required>
+          <button type="button" class="btn btn-light lgenerateotp" >Send OTP</button>
+        </div>
+       
+       
+        <div class="form-group">
+          <label for="exampleInputPassword1">Validation</label>
+          <input type="password" class="form-control lverificationcode" id="exampleInputPassword12" placeholder="Enter your otp here" required>
+        </div>
+        <button type="button" class="btn btn-light lverifyotp" >Submit</button>
+       
+      </div>
+      <div id="lrecaptcha-container"></div>
+
+     
+    </form>
+  </section>
+       
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <!-- <div class="w3-col s4">
+      <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+    </div> -->
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong class="admin-name">Anoop</strong></span><br>
+      <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="homeslider.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Home Sliders</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Overview</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Users</a>
+    <a href="category.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-camera fa-fw"></i>  Category</a>
+    <a href="products.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Products</a>
+    <a href="bookings.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket fa-fw"></i>  Bookings</a>
+    <a href="promocode.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-tags fa-fw"></i>  Promocode</a>
+    <a href="notifications.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notifications</a>
+    <br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+  </header>
+<div class="usersmain">
+<table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">mobile</th>
+        <th scope="col">Location</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody  class="userslist">
+      <!-- <tr>
+        <td>Hemanth</td>
+        <td>9502831877</td>
+        <td>gopalapatnam</td>
+        <td>Active</td>
+        <td><label class="switch table-switch">
+          <input type="checkbox">
+          <span class="slider round table-slider table-round"></span>
+        </label></td>
+      </tr> -->
+
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<!-- Button trigger modal
+<button data-bs-toggle="modals" data-bs-target="#staticBackdrops">
+  Launch static backdrop modal
+</button>
+
+ Modal 
+<div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropsLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modals" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        akjshflvkhvlsika whdfh fsfsggbhd
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modals">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+ 
+
+<!-- <a class="trigger_popup_fricc">Click here to show the popup</a> -->
+<div class="popfield"></div>
+<!-- <div class="hover_bkgr_fricc">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">&times;</div>
+        <p>Add any HTML content inside the popup box!</p>
+    </div>
+</div> -->
+
+  <!-- End page content -->
+</div>
+<!-- <script>
+const popup=document.querySelector('.trigger_popup_fricc')
+const popbox=document.querySelector('.hover_bkgr_fricc')
+const closebut=document.querySelector('.popupCloseButton')
+popup.addEventListener('click',(e)=>{
+  popbox.style.display="block"
+})
+closebut.addEventListener('click',(e)=>{
+  popbox.style.display="none"
+})
+</script> -->
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+</script>
+
+
+
+</body>
+</html>
+<!-- partial -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+<script src="scripts/firebaseauth.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/user.js"></script>
+
+</body>
+</html>
