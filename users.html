@@ -250,6 +250,7 @@ input:checked + .table-slider:before {
     <a href="category.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-camera fa-fw"></i>  Category</a>
     <a href="products.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Products</a>
     <a href="bookings.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket fa-fw"></i>  Bookings</a>
+    <a href="repairs.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket fa-fw"></i>  Repairs</a>
     <a href="promocode.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-tags fa-fw"></i>  Promocode</a>
     <!-- <a href="notifications.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notifications</a> -->
     <br><br>
@@ -266,7 +267,40 @@ input:checked + .table-slider:before {
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Users</b></h5>
+    <input type="text" id="searchinput" placeholder="Search by Phone No.">
+    <button type="button" class="btn btn-secondary" id="searchbtn">search</button>
+    
   </header>
+
+
+<!-- search result -->
+<div class="searchresult">
+  <table class="table">
+      
+    <thead class="thead-dark">
+      <h6 style="text-align:center"><b>Search Result</b></h6>
+      <button class="btn btn-dark" style="margin-left: 950px;" id="closesearch">X</button>
+      <tr>
+        <th scope="col">S.NO</th>
+        <th scope="col">Name</th>
+        <th scope="col">mobile</th>
+        <th scope="col">Location</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody class="orders3">
+    </tbody>
+  </table>
+  
+  <div class="popfield3"></div>
+  
+  </div>
+
+
+
+
 <div class="usersmain">
 <table class="table">
       <thead class="thead-dark">
@@ -277,6 +311,8 @@ input:checked + .table-slider:before {
         <th scope="col">Location</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
+        <th scope="col">Edit</th>
+        
       </tr>
     </thead>
     <tbody  class="userslist">
@@ -298,54 +334,76 @@ input:checked + .table-slider:before {
 
 
 
-<!-- Button trigger modal
-<button data-bs-toggle="modals" data-bs-target="#staticBackdrops">
-  Launch static backdrop modal
-</button>
-
- Modal 
-<div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropsLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropsLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modals" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        akjshflvkhvlsika whdfh fsfsggbhd
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modals">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div> -->
- 
-
-<!-- <a class="trigger_popup_fricc">Click here to show the popup</a> -->
 <div class="popfield"></div>
-<!-- <div class="hover_bkgr_fricc">
-    <span class="helper"></span>
-    <div>
-        <div class="popupCloseButton">&times;</div>
-        <p>Add any HTML content inside the popup box!</p>
+
+<!-- edit the user details here -->
+<div id="editsections">
+<section class="login-form" style="width: 400px; margin-left: 100px; margin-bottom: 50px;">
+  <form onsubmit="if(document.getElementById('checkboxx').checked) { accessto(); return false } else { alert('Please check terms&conditions'); return false; }">
+    
+    <div class="form-group">
+      <div class="forms-groups">
+        <label for="exampleInputPassword1">Phone number</label>
+        <input type="text" class="form-control " id="ephone" placeholder="Your phone number" required>
+      </div>
+     
+      <div class="regname">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control signinname" id="ename" aria-describedby="emailHelp" placeholder="Enter your name" required><br>
+        <label>alternative phone number</label>
+        <input type="number" class="form-control" id="ealtphone" placeholder="Aleternative phone number" required>
+      </div>
+     
     </div>
-</div> -->
+   
+
+    <div class="form-group regaadhar">
+      <label for="adharfront">Upload your adharcard(front)</label>
+      <input type="file" class="form-control adharfront" id="eadharfront"  placeholder="front" >
+      <progress value="0" max="100" id="euploaderf">0%</progress><br>
+      <label for="adharback">Upload adharcard(back)</label>
+      <input type="file" class="form-control adharback" id="eadharback" placeholder="back" >
+      <progress value="0" max="100" id="euploaderb">0%</progress><br>
+
+      <label for="exampleInputPassword1">Enter your adharnumber</label>
+        <input type="number" class="form-control phonenumber " id="eadharnumber" placeholder="Your adhar number" required>
+
+      <label for="otherid">Any other id(pan,driving liecense etc..,)</label>
+      <input type="file" class="form-control adharfront" id="eotherid"  placeholder="front" >
+      <progress value="0" max="100" id="eotheridp">0%</progress><br>
+
+      <label for="profile">Upload your profile pic</label>
+      <input type="file" class="form-control" id="eprofile"  placeholder="front" >
+      <progress value="0" max="100" id="eprofilep">0%</progress><br>
+    </div>
+
+    <div class="form-group location">
+      <label for="exampleInputPassword1">Location</label>
+      <input type="text" class="form-control signinlocation" id="elocation" placeholder="Enter your location" required>
+      <label for="exampleInputPassword1">Your profession</label>
+      <input type="text" class="form-control signinprofession" id="eprofession"  placeholder="Enter your profession here" required>
+
+
+    </div>
+
+    
+   
+    <div class="form-check regformcheck">
+      <input type="checkbox" class="form-check-input" id="checkboxx">
+      I have read and agree to the Terms and Conditions and Privacy Policy
+    </div>
+    <button type="submit" class="btn btn-dark signupsubmit" >Submit</button>
+    <button type="button" class="btn btn-dark signupsubmit" onclick="document.querySelector('#editsections').style.display='none' " >X</button>
+  </form>
+</section>
+</div>
+<!-- end of the edit user details -->
+
+
 
   <!-- End page content -->
 </div>
-<!-- <script>
-const popup=document.querySelector('.trigger_popup_fricc')
-const popbox=document.querySelector('.hover_bkgr_fricc')
-const closebut=document.querySelector('.popupCloseButton')
-popup.addEventListener('click',(e)=>{
-  popbox.style.display="block"
-})
-closebut.addEventListener('click',(e)=>{
-  popbox.style.display="none"
-})
-</script> -->
+
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
@@ -369,6 +427,14 @@ function w3_close() {
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
+
+document.querySelector('.searchresult').style.display="none"
+   //none search result
+document.querySelector('#closesearch').addEventListener('click',(e)=>{
+  document.querySelector('.searchresult').style.display="none"
+  document.querySelector('#searchinput').value='';
+})
+
 </script>
 
 

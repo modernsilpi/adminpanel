@@ -311,8 +311,37 @@ input:checked + .table-slider:before {
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
+    <input type="text" id="searchinput" placeholder="Search by Phone No.">
+    <button type="button" class="btn btn-secondary" id="searchbtn">search</button>
+<h4>search by date</h4>
+    <input type="date" id="findbydate" placeholder="YYYY - MM - DD">
     <h5><b><i class="fa fa-dashboard"></i> Repairs</b></h5>
   </header>
+
+<!-- search result -->
+<div class="searchresult">
+  <table class="table">
+      
+    <thead class="thead-dark">
+      <h6 style="text-align:center"><b>Search Result</b></h6>
+      <button class="btn btn-dark" style="margin-left: 950px;" id="closesearch">X</button>
+      <tr>
+        <th scope="col">S.NO</th>
+        <th scope="col">Name</th>
+        <th scope="col">mobile</th>
+        <th scope="col">Servicename</th>
+        <th scope="col">Subject</th>
+        <th scope="col">date</th>
+      </tr>
+    </thead>
+    <tbody class="orders3">
+    </tbody>
+  </table>
+  
+  <div class="popfield3"></div>
+  
+  </div>
+
 
 
   <table class="table">
@@ -396,14 +425,15 @@ input:checked + .table-slider:before {
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+   
   </footer>
 
   <!-- End page content -->
 </div>
 
 <script>
+
+
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
 
@@ -426,6 +456,16 @@ function w3_close() {
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
+
+
+document.querySelector('.searchresult').style.display="none"
+   //none search result
+document.querySelector('#closesearch').addEventListener('click',(e)=>{
+  document.querySelector('.searchresult').style.display="none"
+  document.querySelector('#searchinput').value='';
+  document.querySelector('#findbydate').value='';
+})
+
 </script>
 
 </body>
