@@ -9,12 +9,13 @@ db.collection('users').doc(firebase.auth().currentUser.uid).collection('profile'
   //  console.log(snap.data().name)
     adminname.innerHTML=snap.data().name;
 })
-    window.location.href = "http://localhost:5501/category.html";
+ //   window.location.href = "http://localhost:5501/category.html";
+ document.getElementById('gotohome').click();
+
 
     } 
     else {
      console.log("user not login")  
-   //  window.location.href = "http://localhost:5501/category.html";
     }
     })
 
@@ -65,11 +66,11 @@ lverifyotp.addEventListener('click',(e)=>{
 }) 
 
 //logout
-const logoutbtn=document.querySelector('.logoutbtn')
-logoutbtn.addEventListener('click',(e)=>{
-    firebase.auth().signOut().then(()=>{
-        console.log("logout successfully");
-    })
-})
+// const logoutbtn=document.querySelector('.logoutbtn')
+// logoutbtn.addEventListener('click',(e)=>{
+//     firebase.auth().signOut().then(()=>{
+//         console.log("logout successfully");
+//     })
+// })
 
 

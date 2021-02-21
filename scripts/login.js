@@ -13,8 +13,10 @@ db.collection('users').doc(firebase.auth().currentUser.uid).collection('profile'
 })
     } 
     else {
-     console.log("user not login")  
-          window.location.href = "http://localhost:5501/index.html";
+     console.log("user not loginh")  
+       //   window.location.href = "http://localhost:5501/index.html";
+       // href='/index.html'
+       document.getElementById('gotologin').click();
 
     }
     })
@@ -68,7 +70,9 @@ const logoutbtn=document.querySelector('.logoutbtn')
 logoutbtn.addEventListener('click',(e)=>{
     firebase.auth().signOut().then(()=>{
         console.log("logout successfully");
-            window.location.href = "http://localhost:5501/login.html";
+          //  window.location.href = "http://localhost:5501/login.html";
+          document.getElementById('gotologin').click();
+
 
     })
 })
