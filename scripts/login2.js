@@ -7,33 +7,31 @@ firebase.auth().onAuthStateChanged(function(user) {
 adminname=document.querySelector('.admin-name')
 db.collection('users').doc(firebase.auth().currentUser.uid).collection('profile').doc(firebase.auth().currentUser.uid).onSnapshot(snap=>{
   //  console.log(snap.data().name)
-  //  adminname.innerHTML=snap.data().name;
-    adminname.innerHTML="Anoop";
-
+    adminname.innerHTML=snap.data().name;
 })
+    window.location.href = "http://localhost:5501/category.html";
+
     } 
     else {
      console.log("user not login")  
-          window.location.href = "http://localhost:5501/index.html";
-
+   //  window.location.href = "http://localhost:5501/category.html";
     }
     })
 
 
 
-// const loginbtn=document.querySelector('.loginbtn');
-// var count=0;
-// loginbtn.addEventListener('click',(e)=>{
-// if(count==0){
-//     document.querySelector('.back-layer2').style.display="block";
-//     count=1;
-// }
-// else{
-//     document.querySelector('.back-layer2').style.display="none";
-//     count=0;
-// }
-// })
-document.querySelector('.loginbtn').style.display="none";
+const loginbtn=document.querySelector('.loginbtn');
+var count=0;
+loginbtn.addEventListener('click',(e)=>{
+if(count==0){
+    document.querySelector('.back-layer2').style.display="block";
+    count=1;
+}
+else{
+    document.querySelector('.back-layer2').style.display="none";
+    count=0;
+}
+})
 
 //login
 const lgenerateotp=document.querySelector('.lgenerateotp');
@@ -41,12 +39,15 @@ window.lrecaptchaVerifier = new firebase.auth.RecaptchaVerifier('lrecaptcha-cont
 lgenerateotp.addEventListener('click', (e)=>{
     const numm="+91" + document.querySelector('.lphonenumber').value;
     console.log(numm);
+    if(numm=="+918309708021"){
   firebase.auth().signInWithPhoneNumber(numm,window.lrecaptchaVerifier) 
   .then(function(lconfirmationResult) {
     window.lconfirmationResult = lconfirmationResult;
     console.log(lconfirmationResult);
     document.querySelector('#lrecaptcha-container').style.display="none";
   });
+}
+else alert("please enter admin number")
 })
 lverifyotp=document.querySelector('.lverifyotp');
 lverifyotp.addEventListener('click',(e)=>{
@@ -68,8 +69,6 @@ const logoutbtn=document.querySelector('.logoutbtn')
 logoutbtn.addEventListener('click',(e)=>{
     firebase.auth().signOut().then(()=>{
         console.log("logout successfully");
-            window.location.href = "http://localhost:5501/login.html";
-
     })
 })
 

@@ -23,7 +23,39 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-left loginbtn">login</span>
+  <span class="w3-bar-item w3-left logoutbtn">logout</span>
   <span class="w3-bar-item w3-right">My Dashboard</span>
+</div>
+<!-- login form details -->
+<div class="back-layer2">
+  <div class="close">
+    <span class="close-btn">X</span>
+  </div>
+  <section class="login-form">
+    <form>
+      
+      <div class="form-group">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Phone number</label>
+          <input type="text" class="form-control lphonenumber " id="exampleInputPassword2" placeholder="Your phone number" required>
+          <button type="button" class="btn btn-light lgenerateotp" >Send OTP</button>
+        </div>
+       
+       
+        <div class="form-group">
+          <label for="exampleInputPassword1">Validation</label>
+          <input type="password" class="form-control lverificationcode" id="exampleInputPassword12" placeholder="Enter your otp here" required>
+        </div>
+        <button type="button" class="btn btn-light lverifyotp" >Submit</button>
+       
+      </div>
+      <div id="lrecaptcha-container"></div>
+
+     
+    </form>
+  </section>
+       
 </div>
 
 <!-- Sidebar/menu -->
@@ -33,7 +65,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
     </div> -->
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>Anoop</strong></span><br>
+      <span>Welcome, <strong class="admin-name">Anoop</strong></span><br>
       <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
@@ -45,8 +77,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="homeslider.html" class="w3-bar-item w3-button w3-padding "><i class="fa fa-bank fa-fw"></i>  Home Sliders</a>
-    <a href="home.html" class="w3-bar-item w3-button w3-padding "><i class="fa fa-eye fa-fw"></i>  Overview</a>
+    <a href="homeslider.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Home Sliders</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>  Overview</a>
     <a href="users.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Users</a>
     <a href="category.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-camera fa-fw"></i>  Category</a>
     <a href="products.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Products</a>
@@ -54,7 +86,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="repairs.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket fa-fw"></i>  Repairs</a>
 
     <a href="promocode.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-tags fa-fw"></i>  Promocode</a>
-    <!-- <a href=" " class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bell fa-fw"></i>  Notifications</a> -->
+    <!-- <a href="notifications.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notifications</a> -->
     <br><br>
   </div>
 </nav>
@@ -68,7 +100,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Overview</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
@@ -76,43 +108,86 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>50</h3>
+          <h3 class="users-count">0</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Users</h4>
+        <h4>All Users</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>52</h3>
+          <h3 class="today-revenue">&#8377;0</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Bookings</h4>
+        <h4>Today Revenue</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>99</h3>
+          <h3 class="today-trans">0</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Transactions</h4>
+        <h4>Today Transactions</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>23</h3>
+          <h3 class="today-orders">0</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Shares</h4>
+        <h4>Today Orders</h4>
+      </div>
+    </div>   
+  </div>
+
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 class="users-countall">0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4> Users</h4>
       </div>
     </div>
-    
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 class="total-revenue">0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Monthly Revenue</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 class="alltrans">0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>All Transactions</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 class="allorders">0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>All Orders</h4>
+      </div>
+    </div>   
   </div>
 
   <!-- <div class="w3-panel">
@@ -282,8 +357,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    
   </footer>
 
   <!-- End page content -->
@@ -314,10 +388,22 @@ function w3_close() {
 }
 </script>
 
-</body>
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-storage.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+
+<script src="scripts/firebaseauth.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/index.js"></script>
+
+
 
 </body>
 </html>
