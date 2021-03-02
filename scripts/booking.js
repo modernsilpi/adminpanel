@@ -52,7 +52,7 @@ bookdb2.orderBy("timestamp", "desc").onSnapshot(snap=>{
       </label></td>
 
       <span class="badge rounded-pill bg-${calas} orderbtn">${vale}</span>
-      <td><button class="btn btn-danger" id="del${nap.id}">del</button>
+      <td><button class="btn btn-danger" id="todel${nap.id}">del</button>
 
         `;
         orders2.append(tr);
@@ -169,7 +169,7 @@ bookdb2.orderBy("timestamp", "desc").onSnapshot(snap=>{
        
 
                       //delete bookings in today bookings
-        const delp=document.getElementById(`del${nap.id}`);
+        const delp=document.getElementById(`todel${nap.id}`);
         delp.addEventListener('click',(e)=>{
           bookdb.doc(nap.id).delete().then(()=>{
            // alert("booking delted")
@@ -259,7 +259,7 @@ bookdb.orderBy("timestamp", "desc").onSnapshot(snap=>{
       </label></td>
 
       <span class="badge rounded-pill bg-${calas} orderbtn">${vale}</span>
-      <td><button class="btn btn-danger" id="del${nap.id}">del</button>
+      <td><button class="btn btn-danger" id="aldel${nap.id}">del</button>
         `;
         orders.append(tr);
 
@@ -376,7 +376,7 @@ bookdb.orderBy("timestamp", "desc").onSnapshot(snap=>{
        
             
         //delete bookings in all bookings
-        const delp=document.getElementById(`del${nap.id}`);
+        const delp=document.getElementById(`aldel${nap.id}`);
         delp.addEventListener('click',(e)=>{
           bookdb.doc(nap.id).delete().then(()=>{
            // alert("booking delted")

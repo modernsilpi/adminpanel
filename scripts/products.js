@@ -34,12 +34,13 @@ db.collection('categorybutton').onSnapshot(snap=>{
             console.log(name)
         const div2=document.createElement('div')
         div2.innerHTML=`
-        <a class="dropdown-item camcut" data-id="${name}" id="${name}" href="#">${name}</a>
+        <a class="dropdown-item camcut" data-id="${name}" id="${name}+${nap.id}" href="#">${name}</a>
         `;
         subcat.append(div2);
-        const sub=document.getElementById(`${name}`)
+        const sub=document.getElementById(`${name}+${nap.id}`)
         sub.addEventListener('click',(e)=>{
             const target=e.target.closest('.camcut')
+            console.log("test1")
             if (!target) return;
             const id = target.dataset.id;
             subcategory=id;
